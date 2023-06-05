@@ -32,4 +32,20 @@ async function addPhoto(req, res) {
   }
 }
 
-module.exports = { index, addPhoto }
+//add show one profile view
+
+async function show(req, res) {
+  try {
+    const profile = await Profile.findByPk(req.params.profileId, {
+      include: [{ model: Comment, as: "commentsReceived" }]
+    });
+    res.status(200).json(profile);
+    console.log(profile);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+}
+
+
+module.exports = { index, addPhoto, show }
