@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Comment extends Model {
     /**
@@ -10,36 +8,39 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Comment.belongsTo(models.Profile, { foreignKey: 'commenterId' })
-      Comment.belongsTo(models.Profile, { foreignKey: 'profileId'})
+      Comment.belongsTo(models.Profile, { foreignKey: "commenterId" });
+      Comment.belongsTo(models.Profile, { foreignKey: "profileId" });
     }
   }
-  Comment.init({
-    value: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    profileId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      onDelete: 'CASCADE',
-      references: {
-        model: "Profiles",
-        key: 'id'
+  Comment.init(
+    {
+      value: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      profileId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        onDelete: "CASCADE",
+        references: {
+          model: "Profiles",
+          key: "id",
+        },
+      },
+      commenterId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        onDelete: "CASCADE",
+        references: {
+          model: "Profiles",
+          key: "id",
+        },
       },
     },
-    commenterId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      onDelete: "CASCADE",
-      references: {
-        model: "Profiles",
-        key: 'id'
-      }
-    } 
-  }, {
-    sequelize,
-    modelName: 'Comment',
-  });
+    {
+      sequelize,
+      modelName: "Comment",
+    }
+  );
   return Comment;
 };
