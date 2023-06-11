@@ -12,5 +12,6 @@ router.use(decodeUserFromToken)
 router.get('/', checkAuth, profilesCtrl.index)
 router.put('/:id/add-photo', checkAuth, profilesCtrl.addPhoto)
 router.get('/:profileId', checkAuth, profilesCtrl.show)
+router.post('/:profileId/comments', checkAuth, profilesCtrl.createComment)
 
 module.exports = router

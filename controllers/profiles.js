@@ -47,5 +47,18 @@ async function show(req, res) {
   }
 }
 
+async function createComment(req, res) {
+  try {
+    req.body.profileId = req.params.profileId
+    req.body.commenterId = req.user.profile.id
+    console.log(req.user.profile.id);
+    const comment = await Comment.create(req.body)
+    res.status(200).json(comment)
+  } catch (error){
+    console.log(error);
+    res.status(500).json ({ err:error })
+  }
+}
 
-module.exports = { index, addPhoto, show }
+
+module.exports = { index, addPhoto, show, createComment }

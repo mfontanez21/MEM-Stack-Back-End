@@ -24,6 +24,8 @@ async function create(req, res) {
 async function update (req,res) {
   
   try{
+    console.log(req.params.commentId);
+    console.log(req.body);
     const comment = await Comment.update(
       req.body,
       { where: { id: req.params.commentId } , returning: true }

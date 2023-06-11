@@ -16,5 +16,8 @@
     "morgan": "^1.10.0",
     "pg": "^8.11.0",
     "sequelize": "^6.31.1"
+  },
+  "devDependencies": {
+    "@flydotio/dockerfile": "^0.2.14"
   }
 }
